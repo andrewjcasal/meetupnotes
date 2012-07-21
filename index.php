@@ -34,7 +34,8 @@ if (!is_null($user)) {
 					'name' => $event['name'],
 					'event_url' => $event['event_url'],
 					'status' => $event['status'],
-					'time' => $event['time'],
+					// Meetup's timestamps are in milliseconds
+					'time' => $event['time'] / 1000,
 				);
 
 				if ($event['status'] == 'past') {
@@ -92,7 +93,7 @@ This is Meetup Notes application powered by <a href="http://www.startupapi.com">
 		<?php
 			foreach ($event_category['events'] as $event) {
 				?><li>
-					<a href="event.php?id=<?php echo $event['id'] ?>"><?php echo $event['name'] ?></a> (<?php echo date('F jS', $event['time']) ?>)
+					<a href="event.php?id=<?php echo $event['id'] ?>"><?php echo $event['name'] ?></a> (<?php echo date('F j', $event['time'])?><sup><?php echo date('S', $event['time'])?></sup>)
 				</li><?php
 			}
 		?>
