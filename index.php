@@ -5,12 +5,12 @@ require_once(dirname(__FILE__).'/users/users.php');
 $user = User::get();
 #$user = User::require_login();
 
-$fetched_groups_organizer = array();
-$fetched_groups_member = array();
+$recent_events = array();
+$upcoming_events = array();
 
 if (!is_null($user)) {
 	// You can work with users, but it's recommended to tie your data to accounts, not users
-	$current_account = Account::getCurrentAccount($user);
+	#$current_account = Account::getCurrentAccount($user);
 
 	$creds = $user->getUserCredentials('meetup');
 	$meetup_info = $creds->getUserInfo();
@@ -21,29 +21,33 @@ if (!is_null($user)) {
 
 	while($keep_going) {
 		$result = $creds->makeOAuthRequest(
-			'http://api.meetup.com/2/groups?order=name&member_id=self',
+			'http://api.meetup.com/2/events?rsvp=yes&status=upcoming,past&order=time&desc=true',
 			'GET'
 		);
-		if ($result['code'] == 200) {
-			$group_data = json_decode($result['body'], true);
 
-			foreach ($group_data['results'] as $group) {
-				$group_info = array(
-					'name' => $group['name'],
-					'link' => $group['link'],
-					'logo' => $group['group_photo']['thumb_link'],
-					'members' => $group['members']
+		if ($result['code'] == 200) {
+			$api_data = json_decode($result['body'], true);
+
+			foreach ($api_data['results'] as $event) {
+				$event_info = array(
+					'id' => $event['id'],
+					'name' => $event['name'],
+					'event_url' => $event['event_url'],
+					'status' => $event['status'],
+					'time' => $event['time'],
 				);
 
-				if ($group['organizer']['member_id'] == $meetup_id) {
-					$fetched_groups_organizer[] = $group_info;
-				} else {
-					$fetched_groups_member[] = $group_info;
+				if ($event['status'] == 'past') {
+					$recent_events[] = $event_info;
+				}
+
+				if ($event['status'] == 'upcoming') {
+					$upcoming_events[] = $event_info;
 				}
 			}
 
 			// keep going while next meta parameter is set
-			$keep_going = $group_data['meta']['next'] !== '';
+			$keep_going = $api_data['meta']['next'] !== '';
 
 			if ($keep_going) {	
 				$page++;
@@ -74,63 +78,34 @@ This is Meetup Notes application powered by <a href="http://www.startupapi.com">
 <div style="clear: both"></div>
 
 <?php
+	$event_categories = array(
+		array('name' => 'Recent events', 'events' => $recent_events),
+		array('name' => 'Upcoming events', 'events' => $upcoming_events)
+	);
 
-	usort($fetched_groups_organizer, function($a, $b) {
-		return $a['members'] > $b['members'] ? -1 : 1;
-	});
-
-	usort($fetched_groups_member, function($a, $b) {
-		return $a['members'] > $b['members'] ? -1 : 1;
-	});
-
-	if (count($fetched_groups_member) || count($fetched_groups_organizer)) {
-		if (count($fetched_groups_organizer)) {
-?>
-<h3>You organize:</h3>
-<ul class="groups">
-<?php
-			foreach ($fetched_groups_organizer as $group) {
+	$total_events = 0;
+	foreach ($event_categories as $event_category) {
+		if (count($event_category['events'])) {
+		?>
+		<h3><?php echo $event_category['name']?></h3>
+		<ul class="events">
+		<?php
+			foreach ($event_category['events'] as $event) {
 				?><li>
-					<div class="logo">
-					<?php if ($group['logo'] != '') { ?>
-						<img src="<?php echo $group['logo'] ?>" />
-					<?php } ?>
-					</div>
-					<a href="<?php echo $group['link'] ?>"><?php echo $group['name'] ?></a><br/>
-					<?php echo $group['members'] ?> members
-					<div class="clb"/>
+					<a href="event.php?id=<?php echo $event['id'] ?>"><?php echo $event['name'] ?></a> (<?php echo date('F jS', $event['time']) ?>)
 				</li><?php
 			}
-?>
-</ul>
-<?php
+		?>
+		</ul>
+		<?
+			$total_events++;
 		}
+	}
 
-		if (count($fetched_groups_member)) {
-?>
-<h3>You're a member:</h3>
-<ul class="groups">
-<?php
-			foreach ($fetched_groups_member as $group) {
-				?><li>
-					<div class="logo">
-					<?php if ($group['logo'] != '') { ?>
-						<img src="<?php echo $group['logo'] ?>" />
-					<?php } ?>
-					</div>
-					<a href="<?php echo $group['link'] ?>"><?php echo $group['name'] ?></a><br/>
-					<?php echo $group['members'] ?> members
-					<div class="clb"/>
-				</li><?php
-			}
-?>
-</ul>
-<?php
-		}
-	} else { ?>
-		<p>You still didn't join any groups?!</p>
+	if (!$total_events) { ?>
+		<p>You still didn't attend any events?!</p>
 		<p><a href="http://www.meetup.com/find/">Find a group and join immediately!</a></p>
-	<?php
+	<?
 	}
 }
 else
