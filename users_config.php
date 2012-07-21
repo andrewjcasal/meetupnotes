@@ -16,7 +16,7 @@ UserConfig::$mysql_db = $mysql_db;
 UserConfig::$mysql_user = $mysql_user;
 UserConfig::$mysql_password = $mysql_password;
 #UserConfig::$mysql_host = 'localhost';
-#UserConfig::$mysql_port = 3306;
+UserConfig::$mysql_port = 8889;
 
 /**
  * User IDs of admins for this instance (to be able to access dashboard at /users/admin/)
