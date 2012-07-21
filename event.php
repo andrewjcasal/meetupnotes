@@ -68,7 +68,7 @@ if (!is_null($user)) {
 <html>
 <head>
     <title>Meetup Notes for <?php echo UserTools::escape($data['name']) ?></title>
-    <link href="css/meetup.css" rel="Stylesheet" type="text/css" />
+    <link href="meetup.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready( function() {
