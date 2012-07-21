@@ -36,7 +36,7 @@
       <file leaf-file-name="config.sample.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.sample.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="5" column="0" selection-start="151" selection-end="151" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -60,19 +60,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schema.sql" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="schema.sql" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/schema.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="61" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+            <state line="2" column="25" selection-start="111" selection-end="111" vertical-scroll-proportion="0.039035592">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notes.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="notes.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/notes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="86" selection-end="86" vertical-scroll-proportion="0.08047337">
+            <state line="4" column="0" selection-start="86" selection-end="86" vertical-scroll-proportion="-2.6153846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/add.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -94,8 +103,8 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/users/.gitmodules" />
         <option value="$PROJECT_DIR$/db.php" />
-        <option value="$PROJECT_DIR$/schema.sql" />
         <option value="$PROJECT_DIR$/notes.php" />
+        <option value="$PROJECT_DIR$/schema.sql" />
       </list>
     </option>
   </component>
@@ -306,7 +315,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.sample.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="151" selection-end="151" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
@@ -325,16 +334,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schema.sql">
+    <entry file="file://$PROJECT_DIR$/add.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="61" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/notes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="86" selection-end="86" vertical-scroll-proportion="0.08047337">
+        <state line="4" column="0" selection-start="86" selection-end="86" vertical-scroll-proportion="-2.6153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="25" selection-start="111" selection-end="111" vertical-scroll-proportion="0.039035592">
           <folding />
         </state>
       </provider>
