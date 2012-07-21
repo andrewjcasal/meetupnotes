@@ -1,4 +1,4 @@
-all:	checkconfig updatecode updateusers 
+all:	checkconfig updatecode updateusers updatedb
 
 checkconfig:
 ifeq "$(wildcard config.php)" ""
@@ -8,6 +8,9 @@ ifeq "$(wildcard config.php)" ""
 	@echo =
 	@exit 1
 endif
+
+updatedb: checkconfig
+	php dbupgrade.php
 
 updatecode:
 ifneq "$(wildcard .git )" ""

@@ -67,7 +67,8 @@ if (!is_null($user)) {
 ?>
 <html>
 <head>
-    <link href="css/meetup.css" rel="Stylesheet" type="text/css" />
+    <title>Meetup Notes for <?php echo UserTools::escape($data['name']) ?></title>
+    <link href="meetup.css" rel="Stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready( function() {
@@ -80,6 +81,7 @@ if (!is_null($user)) {
     </script>
 </head>
 <body>
+<div style="float: right"><?php include(dirname(__FILE__).'/users/navbox.php'); ?></div>
 <? $notes = get_notes_by_meetup($event_id); ?>
 <div class="area-content">
     <div class="top">
@@ -97,14 +99,16 @@ if (!is_null($user)) {
             <? endforeach; ?>
             <div class="header clearfix">
                 <div class="header-left">
-                    <h1>Meetup Event Title</h1>
+                    <h1><?php echo UserTools::escape($data['name']) ?></h1>
+                    <h2>Group: <?php echo UserTools::escape($data['group']['name']) ?></h2>
                     <h2>Event ID: <?=$event_id?></h2>
+                    <div class="fade"><?php echo $data['description'] ?></div>
                 </div>
                 <div class="header-right">
                 </div>
             </div>
             <div class="sidebar">
-                <a href="#" class="add">add</a>
+                <a href="add.php?event_id=<?php echo urlencode($event_id) ?>" class="add">add</a>
                 <div class="event-url">
                 </div>
                 <div class="sms">
@@ -120,61 +124,5 @@ if (!is_null($user)) {
 </div><!-- end scrollable-content -->
 
 </div><!-- end area-content -->
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html>
-<head>
-	<title>Meetup Notes for <?php echo UserTools::escape($data['name']) ?></title>
-	<link rel="stylesheet" type="text/css" href="meetup.css"/>
-</head>
-<body>
-<div style="float: right"><?php include(dirname(__FILE__).'/users/navbox.php'); ?></div>
-<h1>Notes for <?php echo UserTools::escape($data['name']) ?></h1>
-<p>Group: <?php echo UserTools::escape($data['group']['name']) ?></p>
-
-<div class="description">
-<?php echo $data['description'] ?>
-</div>
-
-<h2>Notes</h2>
-<p><a href="add.php?event_id=<?php echo urlencode($event_id) ?>">Add your note</a></p>
-
-TODO: add actual notes
-
 </body>
 </html>
