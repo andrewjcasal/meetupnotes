@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/users/users.php');
+include('notes.php');
 
 // get user if logged in or require user to login
 $user = User::get();
@@ -61,6 +62,98 @@ if (!is_null($user)) {
 }
 
 ?>
+<html>
+<head>
+    <link href="css/meetup.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $(".little-content").mouseover( function() {
+                $(this).find("div").fadeIn();
+            }).mouseout( function() {
+                    $(this).find("div").fadeOut();
+                });
+        });
+    </script>
+</head>
+<body>
+<? $notes = get_notes_by_meetup($event_id); ?>
+<div class="area-content">
+    <div class="top">
+    </div>
+    <div class="scrollable-content">
+        <div class="container clearfix">
+            <? foreach($notes as $note): ?>
+            <div id="note<?=$note['id']?>" class="little-content">
+                <?=$note['title']?>
+                <?=$note['url']?>
+                <div class="fade">
+                    <?=$note['description']?>
+                </div>
+            </div>
+            <? endforeach; ?>
+            <div class="header clearfix">
+                <div class="header-left">
+                    <h1>Meetup Event Title</h1>
+                    <h2>Event ID: <?=$event_id?></h2>
+                </div>
+                <div class="header-right">
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="add">add</a>
+                <div class="event-url">
+                </div>
+                <div class="sms">
+                </div>
+            </div>
+            <div class="area-social">
+                <a href="#" class="linkedin">sign in with linkedin</a>
+                <a href="#" class="twitter">sign in with twitter</a>
+                <a href="#" class="facebook">sign in with facebook</a>
+            </div>
+        </div>
+    </div><!-- end container -->
+</div><!-- end scrollable-content -->
+
+</div><!-- end area-content -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html>
 <head>
 	<title>Meetup Notes for <?php echo UserTools::escape($data['name']) ?></title>
