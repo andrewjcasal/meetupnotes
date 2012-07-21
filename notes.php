@@ -3,9 +3,9 @@
 include('config.php');
 mysql_connect('localhost',$mysql_user,$mysql_password);
 
-function set_note($meetup_id, $url, $content = null, $title = null, $description = null, $user_id = null) {
+function set_note($event_id, $url, $content = null, $title = null, $description = null, $user_id = null) {
     if (mysql_query("INSERT INTO `meetupnotes`.`notes` SET
-        meetup_id='".mysql_real_escape_string($meetup_id)."',
+        event_id='".mysql_real_escape_string($event_id)."',
         url='".mysql_real_escape_string($url)."',
         content='".mysql_real_escape_string($content)."',
         title='".mysql_real_escape_string($title)."',
@@ -18,12 +18,12 @@ function get_note($id) {
 
 }
 
-function get_notes_by_meetup($meetup_id) {
-    $query = "SELECT * FROM `meetupnotes`.`notes` WHERE meetup_id=".mysql_real_escape_string($meetup_id);
+function get_notes_by_meetup($event_id) {
+    $query = "SELECT * FROM `meetupnotes`.`notes` WHERE event_id=".mysql_real_escape_string($event_id);
     $result = mysql_query($query);
     for ($i=0;$row = mysql_fetch_assoc($result);$i++) {
         $return[$i]['id'] = $row['id'];
-        $return[$i]['meetup_id'] = $row['meetup_id'];
+        $return[$i]['event_id'] = $row['event_id'];
         $return[$i]['user_id'] = $row['user_id'];
         $return[$i]['title'] = $row['title'];
         $return[$i]['description'] = $row['description'];

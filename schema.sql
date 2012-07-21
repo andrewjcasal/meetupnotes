@@ -1,6 +1,6 @@
 CREATE TABLE `meetupnotes`.`notes` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `meetup_id` VARCHAR(255) NULL,
+  `event_id` VARCHAR(255) NULL,
   `user_id` INTEGER UNSIGNED NULL,
   `title` TEXT NULL,
   `description` TEXT NULL,
