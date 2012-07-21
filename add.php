@@ -4,12 +4,20 @@ require_once(dirname(__FILE__).'/users/users.php');
 // get user if logged in or require user to login
 $user = User::get();
 #$user = User::require_login();
+
 $event_id = filter_var($_REQUEST['event_id'], FILTER_SANITIZE_NUMBER_INT);
 $user_id = null;
 
+$event_id = $_REQUEST['event_id'];
+if (!ctype_alnum($event_id)) {
+	header('HTTP/1.0 400 Bad Request');
+	echo 'Event ID must be alphanumeric';
+	exit;
+}
+
 if (!is_null($user))
 	$user_id = $user->getID();
-	
+
 ?>
 <html>
 <head>
@@ -66,5 +74,6 @@ if (!is_null($user))
 	<div class="field-row"><div class="field-label">Description (optional)</div><div class="field-description" onClick="this.contentEditable='true';" onBlur="this.contentEditable='true';"></div></div>
 	<br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<div class="submit-button" onclick="checkEmbed();">submit</div>
+	<div class="response"></div>
 </body>
 </html>
