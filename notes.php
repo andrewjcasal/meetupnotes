@@ -4,13 +4,16 @@ include('config.php');
 mysql_connect('localhost',$mysql_user,$mysql_password);
 
 function set_note($event_id, $url, $content = null, $title = null, $description = null, $user_id = null) {
-    if (mysql_query("INSERT INTO `meetupnotes`.`notes` SET
+
+    $result = mysql_query("INSERT INTO `meetupnotes`.`notes` SET
         event_id='".mysql_real_escape_string($event_id)."',
         url='".mysql_real_escape_string($url)."',
         content='".mysql_real_escape_string($content)."',
         title='".mysql_real_escape_string($title)."',
         description='".mysql_real_escape_string($description)."',
-        user_id='".mysql_real_escape_string($user_id)."'")) return true;
+        user_id='".mysql_real_escape_string($user_id)."'");
+    
+    if ($result) return true;
     else return false;
 }
 

@@ -16,7 +16,13 @@ UserConfig::$mysql_db = $mysql_db;
 UserConfig::$mysql_user = $mysql_user;
 UserConfig::$mysql_password = $mysql_password;
 #UserConfig::$mysql_host = 'localhost';
-#UserConfig::$mysql_port = 3306;
+UserConfig::$mysql_port = 8889;
+
+define('MEETUPNOTES_ACTIVITY_ADD_NOTE', 1);
+define('MEETUPNOTES_ACTIVITY_DELETE_NOTE', 2);
+// array of activities in the system velue is an array of label and value of activity
+UserConfig::$activities[MEETUPNOTES_ACTIVITY_ADD_NOTE] = array('Added a note for an event', 5);
+UserConfig::$activities[MEETUPNOTES_ACTIVITY_DELETE_NOTE] = array('Deleted a note', 1);
 
 /**
  * User IDs of admins for this instance (to be able to access dashboard at /users/admin/)
