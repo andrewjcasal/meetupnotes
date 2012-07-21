@@ -11,6 +11,10 @@
  */
 $randomness = '...some.random.characters.go.here...';
 
+// used for un-authenticated requests
+// Get yours here: http://www.meetup.com/meetup_api/key/
+$meetupAPIKey = '...long.alpha.numeric.string...';
+
 /**
  * MySQL configuration variables
  */
