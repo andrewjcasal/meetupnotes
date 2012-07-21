@@ -34,7 +34,7 @@ if (array_key_exists('problem', $data)){
 </head>
 <body>
 <div style="float: right"><?php include(dirname(__FILE__).'/users/navbox.php'); ?></div>
-<h1><?php echo UserTools::escape($data['name']) ?></h1>
+<h1>Notes for <?php echo UserTools::escape($data['name']) ?></h1>
 
 <div class="description">
 <?php echo $data['description'] ?>
