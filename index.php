@@ -21,7 +21,7 @@ if (!is_null($user)) {
 
 	while($keep_going) {
 		$result = $creds->makeOAuthRequest(
-			'http://api.meetup.com/2/events?rsvp=yes&status=upcoming,past&order=time&desc=true',
+			'http://api.meetup.com/2/events?rsvp=yes&status=upcoming,past&order=time&desc=true&time=-3m,3m',
 			'GET'
 		);
 
@@ -93,7 +93,7 @@ This is Meetup Notes application powered by <a href="http://www.startupapi.com">
 		<?php
 			foreach ($event_category['events'] as $event) {
 				?><li>
-					<a href="event.php?id=<?php echo $event['id'] ?>"><?php echo $event['name'] ?></a> (<?php echo date('F j', $event['time'])?><sup><?php echo date('S', $event['time'])?></sup>)
+					<a href="event.php?id=<?php echo $event['id'] ?>"><?php echo $event['name'] ?></a> (<?php echo date('F j', $event['time'])?><sup><?php echo date('S', $event['time'])?></sup>, <?php echo date('Y', $event['time'])?>)
 				</li><?php
 			}
 		?>
