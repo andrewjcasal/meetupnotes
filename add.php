@@ -5,7 +5,12 @@ require_once(dirname(__FILE__).'/users/users.php');
 $user = User::get();
 #$user = User::require_login();
 
-$event_id = filter_var($_REQUEST['event_id'], FILTER_SANITIZE_NUMBER_INT);
+$event_id = $_REQUEST['event_id'];
+if (!ctype_alnum($event_id)) {
+	header('HTTP/1.0 400 Bad Request');
+	echo 'Event ID must be alphanumeric';
+	exit;
+}
 
 if (array_key_exists('add', $_POST)) {
 	$user_id = null;
