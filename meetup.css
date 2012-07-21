@@ -151,11 +151,11 @@ body {
     max-width: 1350px;
     height: 89px;
     padding: 18px;
-    background: url(../images/title.png) no-repeat;
+    background: url(title.png) no-repeat;
 }
 .header-right {
     float: right;
-    background: url(../images/title-right.png) no-repeat;
+    background: url(title-right.png) no-repeat;
     height: 125px;
     width: 17px;
 }
