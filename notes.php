@@ -1,17 +1,18 @@
 <?php
 
 include('config.php');
-mysql_connect('localhost',$mysql_user,$mysql_password);
 
 function set_note($event_id, $url, $content = null, $title = null, $description = null, $user_id = null) {
 
-    $result = mysql_query("INSERT INTO `meetupnotes`.`notes` SET
+	$query = "INSERT INTO notes SET
         event_id='".mysql_real_escape_string($event_id)."',
         url='".mysql_real_escape_string($url)."',
         content='".mysql_real_escape_string($content)."',
         title='".mysql_real_escape_string($title)."',
         description='".mysql_real_escape_string($description)."',
-        user_id='".mysql_real_escape_string($user_id)."'");
+        user_id='".mysql_real_escape_string($user_id)."'";
+
+	$result = mysql_query($query);
     
     if ($result) return true;
     else return false;
@@ -22,7 +23,7 @@ function get_note($id) {
 }
 
 function get_notes_by_meetup($event_id) {
-    $query = "SELECT * FROM `meetupnotes`.`notes` WHERE event_id=".mysql_real_escape_string($event_id);
+    $query = "SELECT * FROM notes WHERE event_id=".mysql_real_escape_string($event_id);
     $result = mysql_query($query);
     for ($i=0;$row = mysql_fetch_assoc($result);$i++) {
         $return[$i]['id'] = $row['id'];
