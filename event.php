@@ -18,6 +18,9 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $output = curl_exec($ch);
 $curl_info = curl_getinfo($ch);
 
+// Meetup responses come in ISO-8859-1 - converting to UTF8
+$output = utf8_encode($output);
+
 // checking if HTTP call was successful and return non-empty response
 if ($curl_info['http_code'] != 200 || !$output) {
 	header('HTTP/1.0 500 Server Error');
