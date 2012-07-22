@@ -105,7 +105,7 @@ if (!is_null($user)) {
                 <div class="header-right">
                 </div>
             </div>
-            <div>Group: <?php echo UserTools::escape($data['group']['name']) ?></div>
+            <!--div>Group: <?php //echo UserTools::escape($data['group']['name']) ?></div-->
             <!--div><?php //echo $data['description'] ?></div-->
             <div class="sidebar">
                 <a href="add.php?event_id=<?php echo urlencode($event_id) ?>" class="add">add</a>
