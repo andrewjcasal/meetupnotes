@@ -77,8 +77,11 @@ if (!is_null($user)) {
 This is Meetup Notes application powered by <a href="http://www.startupapi.com">Startup API</a>, you can see the <a href="https://github.com/jasondpearson/meetupnotes" target="_blank">code on Github</a>.
 </div>
 <div style="clear: both"></div>
-
 <?php
+	usort($upcoming_events, function($a, $b) {
+		return $a['time'] < $b['time'] ? -1 : 1;
+	});
+
 	$event_categories = array(
 		array('name' => 'Recent events', 'events' => $recent_events),
 		array('name' => 'Upcoming events', 'events' => $upcoming_events)
