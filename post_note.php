@@ -1,5 +1,8 @@
 <?php
+require_once(dirname(__FILE__).'/users/users.php');
 include('notes.php');
+
+$user = User::get();
 
 if(isset($_POST)) {
 	if(
@@ -8,8 +11,16 @@ if(isset($_POST)) {
 		isset($_POST["event_id"]) &&
 		isset($_POST["title"]) &&
 		isset($_POST["url"])) {
-		 set_note($_POST["event_id"], $_POST["url"], null, $_POST["title"], $_POST["description"], $_POST["user_id"])
-		
+
+		$user_id = null;
+		if (!is_null($user)) {
+			$user_id = $user->getID();
+		}
+
+		if (set_note($_POST["event_id"], $_POST["url"], null, $_POST["title"], $_POST["description"], $user_id)) {
+			if (!is_null($user)) {
+				$user->recordActivity(MEETUPNOTES_ACTIVITY_ADD_NOTE);
+			}
 		?>
 		<article>
 			<div class="label-title"><?php echo $_POST["title"]; ?></div>
@@ -17,6 +28,9 @@ if(isset($_POST)) {
 			<a href="<?php echo $_POST["url"]; ?>">asdf</a>
 		</article>
 		<?php
+		} else {
+			?>Could not post note ;(<?php
+		}
 	}
 }
 ?>

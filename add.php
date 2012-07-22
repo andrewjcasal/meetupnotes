@@ -39,13 +39,11 @@ if (!is_null($user))
 		console.log('check url');
 		var formUrl = $('input.field-url').attr('value');
 		var formTitle = $('input.field-title').attr('value');
-		var formUserId = $('input.field-user-id').attr('value');
 		var formDescription = $('div.field-description').html();
 		var formEventId = $('input.field-event-id').attr('value');
 		logged = {
 			url:formUrl,
 			event_id:formEventId,
-			user_id:formUserId,
 			title:formTitle,
 			description:formDescription
 		};
@@ -68,7 +66,6 @@ if (!is_null($user))
 <p>User id (optional):<?php echo UserTools::escape($user_id) ?></p>
 <?php } ?>
 	<input type="hidden" class="field-event-id" value="<?php echo UserTools::escape($event_id) ?>"/>
-	<input type="hidden" class="field-user-id" value="<?php echo UserTools::escape($user_id) ?>"/>
 	<div class="field-row"><div class="field-label">Url</div><input type="textbox" placeholder="Title" class="field-title" /></div>
 	<div class="field-row"><div class="field-label">Title</div><input type="textbox" placeholder="http://website.com/" class="field-url" /></div>
 	<div class="field-row"><div class="field-label">Description (optional)</div><div class="field-description" onClick="this.contentEditable='true';" onBlur="this.contentEditable='true';"></div></div>
