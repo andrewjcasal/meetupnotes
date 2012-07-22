@@ -51,6 +51,46 @@ if (array_key_exists('problem', $data)){
 	exit;
 }
 
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://api.meetup.com/2/groups?key='.$meetupAPIKey.'&sign=true&group_id='.$data['group']['id']); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$output = curl_exec($ch);
+$curl_info = curl_getinfo($ch);
+
+// Meetup responses come in ISO-8859-1 - converting to UTF8
+$output = utf8_encode($output);
+
+// checking if HTTP call was successful and return non-empty response
+if ($curl_info['http_code'] != 200 || !$output) {
+	header('HTTP/1.0 500 Server Error');
+	echo "API problems";
+	exit;
+}
+curl_close($ch);
+
+$data_group = json_decode($output, true); //, 512, JSON_BIGINT_AS_STRING);
+
+// checking if we were able to parse JSON
+if (is_null($data_group)) {
+	header('HTTP/1.0 500 Server Error');
+	echo "Can not decode JSON: <pre>".htmlentities($output)."</pre>";
+	exit;
+}
+
+if (array_key_exists('problem', $data_group)){
+	if ($data_group['problem'] == 'Not Found') {
+		header('HTTP/1.0 404 Not Found');
+	} else {
+		header('HTTP/1.0 500 Server Error');
+	}
+
+	echo $data_group['details'];
+
+	exit;
+}
+
+#var_export($data_group); exit;
+
 // checking if user is an organizer of this meetup
 $is_organizer = false;
 if (!is_null($user)) {
