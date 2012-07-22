@@ -72,11 +72,11 @@ if (!is_null($user)) {
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready( function() {
-            $(".little-content").mouseover( function() {
+            $(".little-content").hover( function() {
                 $(this).find("div").fadeIn();
-            }).mouseout( function() {
-                    $(this).find("div").fadeOut();
-                });
+            }, function() {
+                $(this).find("div").fadeOut();
+            });
         });
     </script>
 </head>
@@ -99,14 +99,14 @@ if (!is_null($user)) {
             <? endforeach; ?>
             <div class="header clearfix">
                 <div class="header-left">
-                    <h1><?php echo UserTools::escape($data['name']) ?></h1>
-                    <h2>Group: <?php echo UserTools::escape($data['group']['name']) ?></h2>
-                    <h2>Event ID: <?=$event_id?></h2>
-                    <div class="fade"><?php echo $data['description'] ?></div>
+                    <div class="title"><?php echo UserTools::escape($data['name']) ?></div>
+                    <div class="subtitle">Event ID: <?=$event_id?></div>
                 </div>
                 <div class="header-right">
                 </div>
             </div>
+            <div>Group: <?php echo UserTools::escape($data['group']['name']) ?></div>
+            <!--div><?php //echo $data['description'] ?></div-->
             <div class="sidebar">
                 <a href="add.php?event_id=<?php echo urlencode($event_id) ?>" class="add">add</a>
                 <div class="event-url">
