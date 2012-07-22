@@ -69,7 +69,8 @@ if (!is_null($user)) {
 <head>
     <title>Meetup Notes for <?php echo UserTools::escape($data['name']) ?></title>
     <link href="meetup.css" rel="Stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
     <script type="text/javascript">
         $(document).ready( function() {
             $(".little-content").hover( function() {
@@ -77,6 +78,9 @@ if (!is_null($user)) {
             }, function() {
                 $(this).find("div").fadeOut();
             });
+			console.log('start embedly');
+			$('div.little-content').embedly({key: "c83269d35e7b4b408906c67b1aeb9cea"});
+			console.log('finish embedly');
         });
     </script>
 </head>
