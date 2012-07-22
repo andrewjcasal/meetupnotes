@@ -91,6 +91,8 @@ if (array_key_exists('problem', $data_group)){
 
 #var_export($data_group); exit;
 
+$data_group = $data_group['results'][0];
+
 // checking if user is an organizer of this meetup
 $is_organizer = false;
 if (!is_null($user)) {
@@ -142,7 +144,8 @@ if (!is_null($user)) {
             <div class="header clearfix">
                 <div class="header-left">
                     <div class="title"><?php echo UserTools::escape($data['name']) ?></div>
-                    <div class="subtitle">Event ID: <?=$event_id?></div>
+			<div class="subtitle"><?php echo $data_group['name']?> on <?php
+			echo date('F j', $data['time'] / 1000)?><sup><?php echo date('S', $data['time'] / 1000)?></sup>, <?php echo date('Y', $data['time'] / 1000)?></div>
                 </div>
                 <div class="header-right">
                 </div>
