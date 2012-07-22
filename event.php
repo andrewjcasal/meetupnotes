@@ -157,9 +157,17 @@ if (!is_null($user)) {
                 </div-->
             </div>
             <div class="area-social">
+		<!--
                 <a href="#" class="linkedin">sign in with linkedin</a>
                 <a href="#" class="twitter">sign in with twitter</a>
                 <a href="#" class="facebook">sign in with facebook</a>
+		-->
+		<?php
+		if (is_null($user)) {
+			$meetup_module = AuthenticationModule::get('meetup');
+			$meetup_module->renderRegistrationForm();
+		}
+		?>
             </div>
         </div>
     </div><!-- end container -->
