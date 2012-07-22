@@ -60,8 +60,8 @@ if (!is_null($user))
 <h1>Adding a note</h1>
 <?php if (array_key_exists('add', $_POST)) { ?>
 <p>Event id: <?php echo UserTools::escape($event_id) ?></p>
-<p>URL: <?php echo UserTools::escape($url) ?></p>
 <p>Title: <?php echo UserTools::escape($title) ?></p>
+<p>URL: <?php echo UserTools::escape($url) ?></p>
 <p>Description (optional):<br/><?php echo UserTools::escape($description) ?></p>
 <p>User id (optional):<?php echo UserTools::escape($user_id) ?></p>
 <?php } ?>

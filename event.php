@@ -149,10 +149,10 @@ if (!is_null($user)) {
             <!--div><?php //echo $data['description'] ?></div-->
             <div class="sidebar">
                 <a href="add.php?event_id=<?php echo urlencode($event_id) ?>" class="add">add</a>
-                <div class="event-url">
+                <!--div class="event-url">
                 </div>
                 <div class="sms">
-                </div>
+                </div-->
             </div>
             <div class="area-social">
                 <a href="#" class="linkedin">sign in with linkedin</a>
