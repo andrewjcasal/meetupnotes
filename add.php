@@ -67,7 +67,7 @@ if (!is_null($user))
 <?php } ?>
 	<input type="hidden" class="field-event-id" value="<?php echo UserTools::escape($event_id) ?>"/>
 	<div class="field-row"><div class="field-label">Title</div><input type="textbox" placeholder="Title" class="field-title" /></div>
-	<div class="field-row"><div class="field-label">URL</div><input type="textbox" placeholder="http://website.com/" class="field-url" /></div>
+	<div class="field-row"><div class="field-label">Url</div><input type="textbox" placeholder="http://website.com/" class="field-url" /></div>
 	<div class="field-row"><div class="field-label">Description (optional)</div><div class="field-description" onClick="this.contentEditable='true';" onBlur="this.contentEditable='true';"></div></div>
 	<br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<div class="submit-button" onclick="checkEmbed();">submit</div>

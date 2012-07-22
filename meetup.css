@@ -196,6 +196,18 @@ body {
     background-color: aliceblue;
 }
 
+.nav {
+    min-height: 25px;
+    min-width: 100px;
+    float: right;
+    margin-top: 11px;
+    margin-right: 70px;
+}
+
+.nav a {
+    color: #000;
+}
+
 .header {
     position: absolute;
     left: 50px;

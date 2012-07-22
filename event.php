@@ -121,10 +121,12 @@ if (!is_null($user)) {
     </script>
 </head>
 <body>
-<div style="float: right"><?php include(dirname(__FILE__).'/users/navbox.php'); ?></div>
 <? $notes = get_notes_by_meetup($event_id); ?>
 <div class="area-content">
     <div class="top">
+        <div class="nav">
+            <?php include(dirname(__FILE__).'/users/navbox.php'); ?>
+        </div>
     </div>
     <div class="scrollable-content">
         <div class="container clearfix">

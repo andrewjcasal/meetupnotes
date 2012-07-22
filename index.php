@@ -63,6 +63,15 @@ if (!is_null($user)) {
 <head>
 	<title>Meetup Notes</title>
 	<link rel="stylesheet" type="text/css" href="meetup.css"/>
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+  <script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
+  <script type="text/javascript">
+    $('document').ready(function(){
+		console.log('start embedly');
+		$('div.little-content').embedly({key: "c83269d35e7b4b408906c67b1aeb9cea"});
+		console.log('finish embedly');
+    });
+  </script>
 </head>
 <body>
 <div style="float: right"><?php include(dirname(__FILE__).'/users/navbox.php'); ?></div>
