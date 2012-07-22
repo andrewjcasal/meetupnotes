@@ -121,7 +121,7 @@ if (!is_null($user)) {
                 $(this).find("div").fadeOut();
             });
 		console.log('start embedly');
-		$('div.little-content').embedly({key: "c83269d35e7b4b408906c67b1aeb9cea"});
+		$('.little-content').embedly({key: "c83269d35e7b4b408906c67b1aeb9cea"});
 		console.log('finish embedly');
         });
     </script>
@@ -138,8 +138,7 @@ if (!is_null($user)) {
         <div class="container clearfix">
             <? foreach($notes as $note): ?>
             <div id="note<?=$note['id']?>" class="little-content">
-                <?=$note['title']?>
-                <?=$note['url']?>
+                <a href="<?=$note['url']?>"><?=$note['title']?></a>
                 <div class="fade">
                     <?=$note['description']?>
                 </div>
